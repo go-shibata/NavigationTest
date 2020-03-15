@@ -2,8 +2,9 @@ package com.example.go.navigationtest.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
+import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.go.navigationtest.R
-import com.example.go.navigationtest.fragment.QuizListFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -11,8 +12,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.container, QuizListFragment.newInstance())
-            .commit()
+        val navController = findNavController(R.id.nav_host_fragment)
+        setupActionBarWithNavController(navController)
     }
+
+    override fun onSupportNavigateUp(): Boolean =
+        findNavController(R.id.nav_host_fragment).navigateUp()
 }

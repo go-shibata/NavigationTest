@@ -13,7 +13,7 @@ class ResultFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            isCorrect = it.getBoolean(ARG_IS_CORRECT)
+            isCorrect = ResultFragmentArgs.fromBundle(it).isCorrect
         }
     }
 
@@ -24,17 +24,5 @@ class ResultFragment : Fragment() {
         val binding = FragmentResultBinding.inflate(inflater, container, false)
         binding.isCorrect = isCorrect
         return binding.root
-    }
-
-    companion object {
-        private const val ARG_IS_CORRECT = "arg_is_correct"
-
-        @JvmStatic
-        fun newInstance(isCorrect: Boolean) =
-            ResultFragment().apply {
-                arguments = Bundle().apply {
-                    putBoolean(ARG_IS_CORRECT, isCorrect)
-                }
-            }
     }
 }

@@ -51,6 +51,6 @@ class MyQuizRecyclerViewAdapter(
     }
 
     interface OnListFragmentInteractionListener {
-        fun onListFragmentInteraction(item: Quiz?)
+        fun onListFragmentInteraction(item: Quiz)
     }
 }

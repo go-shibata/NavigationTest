@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.go.navigationtest.databinding.FragmentQuizListBinding
 import com.example.go.navigationtest.model.Quiz
@@ -39,7 +40,10 @@ class QuizListFragment : Fragment(), MyQuizRecyclerViewAdapter.OnListFragmentInt
         fun newInstance() = QuizListFragment()
     }
 
-    override fun onListFragmentInteraction(item: Quiz?) {
-        TODO("Not yet implemented")
+    override fun onListFragmentInteraction(item: Quiz) {
+        println(item)
+        view?.findNavController()?.navigate(
+            QuizListFragmentDirections.actionQuizListFragmentToQuizDetailFragment(item)
+        )
     }
 }

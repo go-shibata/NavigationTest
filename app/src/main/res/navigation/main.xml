@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    app:startDestination="@id/quizListFragment">
+    <fragment
+        android:id="@+id/quizDetailFragment"
+        android:name="com.example.go.navigationtest.fragment.QuizDetailFragment"
+        android:label="fragment_quiz_detail"
+        tools:layout="@layout/fragment_quiz_detail">
+        <argument
+            android:name="quiz"
+            app:argType="com.example.go.navigationtest.model.Quiz" />
+        <action
+            android:id="@+id/action_quizDetailFragment_to_resultFragment"
+            app:destination="@id/resultFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/resultFragment"
+        android:name="com.example.go.navigationtest.fragment.ResultFragment"
+        android:label="fragment_result"
+        tools:layout="@layout/fragment_result">
+        <argument
+            android:name="isCorrect"
+            app:argType="boolean" />
+    </fragment>
+    <fragment
+        android:id="@+id/quizListFragment"
+        android:name="com.example.go.navigationtest.fragment.QuizListFragment"
+        android:label="fragment_quiz_list"
+        tools:layout="@layout/fragment_quiz_list">
+        <action
+            android:id="@+id/action_quizListFragment_to_quizDetailFragment"
+            app:destination="@id/quizDetailFragment" />
+    </fragment>
+</navigation>

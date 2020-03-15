@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.go.navigationtest.databinding.FragmentQuizDetailBinding
 import com.example.go.navigationtest.model.Quiz
@@ -16,8 +17,9 @@ class QuizDetailFragment : Fragment(), QuizDetailRecyclerViewAdapter.OnClickChoi
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         arguments?.let {
-            mQuiz = it.getSerializable(ARG_QUIZ) as Quiz
+            mQuiz = QuizDetailFragmentArgs.fromBundle(it).quiz
         }
     }
 
@@ -38,19 +40,10 @@ class QuizDetailFragment : Fragment(), QuizDetailRecyclerViewAdapter.OnClickChoi
         return binding.root
     }
 
-    companion object {
-        private const val ARG_QUIZ = "arg_quiz"
-
-        @JvmStatic
-        fun newInstance(quiz: Quiz) =
-            QuizDetailFragment().apply {
-                arguments = Bundle().apply {
-                    putSerializable(ARG_QUIZ, quiz)
-                }
-            }
-    }
-
     override fun onClickChoice(item: Int) {
-        TODO("Not yet implemented")
+        val isCorrect = mQuiz.mAns == item + 1
+        view?.findNavController()?.navigate(
+            QuizDetailFragmentDirections.actionQuizDetailFragmentToResultFragment(isCorrect)
+        )
     }
 }

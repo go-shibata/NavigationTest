@@ -14,7 +14,8 @@
             app:argType="com.example.go.navigationtest.model.Quiz" />
         <action
             android:id="@+id/action_quizDetailFragment_to_resultFragment"
-            app:destination="@id/resultFragment" />
+            app:destination="@id/resultFragment"
+            app:popUpTo="@id/quizListFragment" />
     </fragment>
     <fragment
         android:id="@+id/resultFragment"

@@ -19,7 +19,12 @@ class QuizDetailFragment : Fragment(), QuizDetailRecyclerViewAdapter.OnClickChoi
         super.onCreate(savedInstanceState)
 
         arguments?.let {
-            mQuiz = QuizDetailFragmentArgs.fromBundle(it).quiz
+            val quiz = it.getString("deep_link_quiz_id")
+            quiz?.let { quiz ->
+                mQuiz = Quiz.sDummyData[Integer.valueOf(quiz) - 1]
+            } ?: run {
+                mQuiz = QuizDetailFragmentArgs.fromBundle(it).quiz
+            }
         }
     }
 
